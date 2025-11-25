@@ -51,13 +51,18 @@ docker-compose up -d
 createdb taskflow
 createuser taskflow_user -P
 
-# Variables d'environnement
+# Variables d'environnement (⚠️ Exemple uniquement - NE PAS utiliser en production)
 export DB_HOST=localhost
 export DB_PORT=5432
 export DB_NAME=taskflow
 export DB_USER=taskflow_user
 export DB_PASSWORD=taskflow_password
-export JWT_SECRET=dGFza2Zsb3ctc2VjcmV0LWtleS1mb3ItcHJvZHVjdGlvbi11c2UtMjU2LWJpdHMtbWluaW11bQ==
+
+# Générer un secret JWT sécurisé pour la production
+export JWT_SECRET=$(openssl rand -base64 64)
+
+# OU utiliser le secret de développement (NON sécurisé)
+# export JWT_SECRET=dGFza2Zsb3ctc2VjcmV0LWtleS1mb3ItcHJvZHVjdGlvbi11c2UtMjU2LWJpdHMtbWluaW11bQ==
 
 # Démarrer l'application
 mvn spring-boot:run
